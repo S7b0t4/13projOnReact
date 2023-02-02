@@ -1,3 +1,32 @@
 body{
   background: #000217;
 }
+.App{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: #000456;
+  height: 99vh;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+}
+.title{
+  font-size: 23px;
+  margin-bottom: 270px;
+}
+.main_input{
+  font-size: 20px;
+  margin-top: 10px;
+  color: white;
+  width: 90%;
+  border: 0;
+  background: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ff0000;
+}
+.print_bord{
+  font-size: 20px;
+}
