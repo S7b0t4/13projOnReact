@@ -248,23 +248,62 @@ function App() {
         "year","yellow","yes","yesterday","yet","you","young","younger",
         "your","yourself","youth","zero","zebra","zipper","zoo","zulu"
     ];
+    let main_input = useRef()
     const [text, setText] = useState('')
-    const main_input = useRef()
-    const [print, setPrint] = useState('Hello world')
+    const [print, setPrint] = useState('')
+    const [win, setWin] = useState(0)
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min + 1;
     }
-    console.log('ghdkf')
-    const randomWords = words[getRandomInt(0, words.length)]
-    setText(text + " " + randomWords)
+
+    const result = () =>{
+        let error = 0
+        console.log('result')
+        console.log(text.length)
+        console.log(print.length)
+        if(text.length === print.length){
+            console.log('===')
+            console.log('===')
+            console.log('===')
+            for (let i = 0; i < print.length; i++) {
+                if(text[i] !== print[i]){
+                    error++
+                    console.log('erron')
+                    return
+                }else{
+                    console.log('win')
+                }
+            }
+            if (error === 0){
+                setWin(win + 1)
+            }
+        }
+        if(print.length > text.length){
+            doText()
+        }
+    }
+    const doText = () =>{
+        let str = words[getRandomInt(0, words.length)].toString()
+        main_input.current.value = ''
+
+        for (let i = 0; i < 4; i++){
+            const randomWords = words[getRandomInt(0, words.length)]
+            str += ' ' + randomWords
+        }
+        setText(str)
+    }
     return (
         <div className="App">
             <div className="title">Test typing</div>
-            <div className="print_bord">{print}</div>
-            <input onInput={ () => setText(main_input.current.value)} autoFocus ref={main_input} className="main_input" type="text"/>
-
+            <div className="result">{win}</div>
+            <div className="print_bord">{text}</div>
+            <input onInput={ () =>{
+                setPrint(main_input.current.value);
+                result()
+            }} autoFocus ref={main_input} className="main_input" type="text"/>
+            <button className='reloader' onClick={doText}>+</button>
         </div>
     );
 }
