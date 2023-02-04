@@ -2,34 +2,56 @@ body{
   background: #000217;
 }
 .App{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   max-width: 1000px;
   margin: 0 auto;
   background: #000456;
   height: 99vh;
   color: white;
   padding: 5px 10px;
-  text-align: center;
 }
 .title{
-  font-size: 23px;
   margin-bottom: 270px;
 }
-.main_input{
+.cent{
+  top: +30%;
   text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+.main_input{
+  position: relative;
+  text-align: start;
   font-size: 20px;
   margin-top: 10px;
   color: white;
-  width: 90%;
+  width: 98%;
   border: 0;
   background: 0;
   padding: 10px;
   border-bottom: 1px solid #ff0000;
+  z-index: 2;
+}
+.with{
+  padding: 10px;
+  position: relative;
+  text-align: start;
+  font-size: 20px;
+  margin-top: 10px;
 }
 .print_bord{
+  color: red;
+  top: 402px;
+  left: 470px;
   font-size: 20px;
+  position: absolute;
+  z-index: 1;
+}
+@media (max-width: 900px) {
+  .print_bord{
+    left: 19px;
+  }
 }
 .reloader{
   margin-top: 20px;

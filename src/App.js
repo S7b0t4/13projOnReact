@@ -260,28 +260,18 @@ function App() {
 
     const result = () =>{
         let error = 0
-        console.log('result')
-        console.log(text.length)
-        console.log(print.length)
         if(text.length === print.length){
-            console.log('===')
-            console.log('===')
-            console.log('===')
             for (let i = 0; i < print.length; i++) {
                 if(text[i] !== print[i]){
-                    error++
-                    console.log('erron')
+                    error += 1
+                    doText()
                     return
-                }else{
-                    console.log('win')
                 }
             }
-            if (error === 0){
+            if(error <= 0){
                 setWin(win + 1)
+                doText()
             }
-        }
-        if(print.length > text.length){
-            doText()
         }
     }
     const doText = () =>{
@@ -296,14 +286,12 @@ function App() {
     }
     return (
         <div className="App">
-            <div className="title">Test typing</div>
-            <div className="result">{win}</div>
-            <div className="print_bord">{text}</div>
-            <input onInput={ () =>{
-                setPrint(main_input.current.value);
-                result()
-            }} autoFocus ref={main_input} className="main_input" type="text"/>
-            <button className='reloader' onClick={doText}>+</button>
+            <div className="cent">
+                <div className="result">{win}</div>
+                <span className='with'>{text}</span>
+                <input onInput={  () =>{setPrint(main_input.current.value);result()}} autoFocus ref={main_input} className="main_input" name={main_input} type="text"/>
+                <button className='reloader' onClick={doText}>+</button>
+            </div>
         </div>
     );
 }
