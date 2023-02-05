@@ -64,3 +64,27 @@ body{
 .result{
   font-size: 60px;
 }
+.row{
+  align-items: center;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.btn{
+  border: 0;
+  background: 0;
+  color: white;
+  cursor: pointer;
+}
+.btn:active{
+  color: red;
+}
+.end{
+  align-items: center;
+  display: flex;
+  justify-content: end;
+  text-align: end;
+}
+.red{
+  color: red;
+}

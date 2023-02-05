@@ -252,33 +252,50 @@ function App() {
     const [text, setText] = useState('')
     const [print, setPrint] = useState('')
     const [win, setWin] = useState(0)
+    const [error, setError] = useState(0)
+    const [hard, setHard] = useState(false)
+    let int = 4
     function getRandomInt(min, max) {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min + 1;
     }
 
-    const result = () =>{
-        let error = 0
-        if(text.length === print.length){
-            for (let i = 0; i < print.length; i++) {
-                if(text[i] !== print[i]){
-                    error += 1
-                    doText()
-                    return
+
+    const result = (it) =>{
+        if(it === 0){
+            return whi(it, error)
+        }
+    }
+    const whi = (it) =>{
+        //console.log(it)
+        //console.log(text.length)
+        if(hard){
+            if(text[it -1] !== print[it-1]){
+                setError(error + 1)
+            }
+        }
+        if(print.length > it){
+            //console.log('it + 1')
+            return whi(it + 1)
+        }
+        if(it === text.length){
+            if(error === 0){
+                //conosole.log('error = ',error) CONOSOLE :))))
+                if(text === print){
+                    setWin(win + 1)
                 }
             }
-            if(error <= 0){
-                setWin(win + 1)
-                doText()
-            }
+            return doText()
         }
     }
     const doText = () =>{
-        let str = words[getRandomInt(0, words.length)].toString()
+        setError(0)
         main_input.current.value = ''
+        setPrint('')
+        let str = words[getRandomInt(0, words.length)].toString()
 
-        for (let i = 0; i < 4; i++){
+        for (let i = 0; i < int; i++){
             const randomWords = words[getRandomInt(0, words.length)]
             str += ' ' + randomWords
         }
@@ -287,10 +304,22 @@ function App() {
     return (
         <div className="App">
             <div className="cent">
-                <div className="result">{win}</div>
+                <div className="row">
+                    <div className="result">{win}</div>
+                    <div className='lit-row'>
+                        <button onClick={() => {int = 4; doText()}} className="btn">5</button>
+                        <button onClick={() => {int = 9; doText()}} className="btn">10</button>
+                        <button onClick={() => {int = 24; doText()}} className="btn">25</button>
+                    </div>
+                    <div className="result">{error}</div>
+                </div>
                 <span className='with'>{text}</span>
-                <input onInput={  () =>{setPrint(main_input.current.value);result()}} autoFocus ref={main_input} className="main_input" name={main_input} type="text"/>
+                <input onInput={  () =>{setPrint(main_input.current.value);result(0)}} autoFocus ref={main_input} className="main_input" name={main_input} type="text"/>
                 <button className='reloader' onClick={doText}>+</button>
+                <div className="end">
+                    <p>HardVersion</p>
+                    <input type='checkbox' onChange={()=>setHard(!hard)}/>
+                </div>
             </div>
         </div>
     );
