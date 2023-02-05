@@ -254,6 +254,7 @@ function App() {
     const [win, setWin] = useState(0)
     const [error, setError] = useState(0)
     const [hard, setHard] = useState(false)
+    const [it, setIt] = useState(0)
     let int = 4
     function getRandomInt(min, max) {
         min = Math.ceil(min);
@@ -262,7 +263,7 @@ function App() {
     }
 
 
-    const result = (it) =>{
+    const result = () =>{
         if(it === 0){
             return whi(it, error)
         }
@@ -283,6 +284,7 @@ function App() {
             if(error === 0){
                 //conosole.log('error = ',error) CONOSOLE :))))
                 if(text === print){
+                    setIt(0)
                     setWin(win + 1)
                 }
             }
@@ -314,7 +316,7 @@ function App() {
                     <div className="result">{error}</div>
                 </div>
                 <span className='with'>{text}</span>
-                <input onInput={  () =>{setPrint(main_input.current.value);result(0)}} autoFocus ref={main_input} className="main_input" name={main_input} type="text"/>
+                <input onInput={  () =>{setPrint(main_input.current.value);result()}} autoFocus ref={main_input} className="main_input" name={main_input} type="text"/>
                 <button className='reloader' onClick={doText}>+</button>
                 <div className="end">
                     <p>HardVersion</p>
